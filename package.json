@@ -1,0 +1,22 @@
+{
+  "name": "flowtok",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "color-logger": "^0.0.6",
+    "express": "^4.17.1",
+    "env": "^0.0.2",
+    "fs": "^0.0.1-security",
+    "node-color-log": "^5.3.1",
+    "puppeteer": "^10.1.0",
+    "puppeteer-extra": "^3.1.18",
+    "puppeteer-extra-plugin-stealth": "^2.7.8"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
