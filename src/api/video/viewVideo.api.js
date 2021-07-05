@@ -15,7 +15,6 @@ class viewVideo
         
         logger.info("Goto To Video ID: " + videoID)
         await this.page.goto("https://m.tiktok.com/v/"+videoID)
-        await this.page.request
         await this.page.waitForFunction((sel) => { 
             return document.querySelectorAll(sel).length;
         },{timeout:10000}, '.tt-feed' + ", " + '.error-page'); 
