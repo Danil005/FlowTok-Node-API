@@ -22,7 +22,10 @@ async function init() {
     await puppeteer.use(StealthPlugin())
 
     // Запускаем браузер и передаем его в класс
-    await puppeteer.launch({headless: true}).then(async browser => await new TikTok().build(browser, cookies))
+    await puppeteer.launch({
+      headless: true, 
+      args: ["--no-sandbox"]
+    }).then(async browser => await new TikTok().build(browser, cookies))
 }
   
 init()
