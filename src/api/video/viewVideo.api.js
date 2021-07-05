@@ -15,12 +15,12 @@ class viewVideo
         
         logger.info("Goto To Video ID: " + videoID)
         await this.page.goto("https://m.tiktok.com/v/"+videoID)
-        let nameElement = await this.page.$eval('body', el => el.text())
+        let nameElement = await this.page.$eval('body', el => el.textContent)
         console.log(nameElement)
         await this.page.waitForFunction((sel) => { 
             return document.querySelectorAll(sel).length;
         },{timeout:10000}, '.tt-feed' + ", " + '.error-page'); 
-        nameElement = await this.page.$eval('body', el => el.text())
+        nameElement = await this.page.$eval('body', el => el.textContent)
         console.log(nameElement)
         let error = await this.page.evaluate(() => Array.from(document.querySelectorAll('.error-page'), (element) => {
             return [
