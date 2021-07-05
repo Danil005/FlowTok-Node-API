@@ -1,3 +1,4 @@
+const logger = require('node-color-log');
 class Controller
 {
     req = null;
