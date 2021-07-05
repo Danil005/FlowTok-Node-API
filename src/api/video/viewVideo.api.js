@@ -11,7 +11,7 @@ class viewVideo
         this.page = page
 
         
-        logger.info("Goto To Video ID: " + videoID)
+        logger.debug("Goto To Video ID: " + videoID)
         await this.page.goto("https://m.tiktok.com/v/"+videoID)
 
 
@@ -22,7 +22,7 @@ class viewVideo
         await this.page.waitForFunction((sel) => { 
             return document.querySelectorAll(sel).length;
         },{timeout:10000}, '.tt-feed' + ", " + '.error-page');
-         
+
         // nameElement = await this.page.$eval('body', el => el.textContent)
         // console.log(nameElement)
 
@@ -118,7 +118,6 @@ class viewVideo
             author = author[0]
         }
 
-        logger.info("Author Information >> Successfully Recived")
     
         let videoInfo = await this.page.evaluate(() => Array.from(document.querySelectorAll(".video-infos-container"), (element) => {
             let description = element.querySelectorAll("strong:not(a)")
