@@ -17,7 +17,11 @@ class viewVideo
         
         logger.info("Goto To Video ID: " + videoID)
         await this.page.goto("https://m.tiktok.com/v/"+videoID)
-        await captchaSolver.solve()
+        await captchaSolver.solve({
+            numAttempts: 3, // max number of attempts to solve the captcha
+            startPosition: 25, // start position of the slider handle
+            positionIncrement: 15, // number of pixels to advance the slider on each iteration
+          })
 
 
         let nameElement = await this.page.$eval('body', el => el.textContent)
