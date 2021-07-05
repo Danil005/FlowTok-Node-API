@@ -1,6 +1,11 @@
 'use strict'
 const logger = require('node-color-log');
 const API = require('./API')
+const NodeCache = require( "node-cache" );
+const redis = require("redis");
+const { promisifyAll } = require('bluebird');
+
+promisifyAll(redis);
 
 class TikTok 
 {
@@ -24,13 +29,23 @@ class TikTok
 
     async build(callback, cookies)
     {
+
+        const myCache = new NodeCache();
+        const client = redis.createClient();
+
+        client.on("error", function(error) {
+            console.error(error);
+        });
+
         this.browser = callback
         this.cookies = cookies
 
         this.api = await new API().build({
             browser: callback,
             cookies: cookies,
-            setConfig: this.setConfig
+            setConfig: this.setConfig,
+            cache: myCache,
+            redis: client
         })
 
         // this.viewVideo('6957346823749111042')

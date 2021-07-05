@@ -26,7 +26,7 @@ async function init() {
 
     // Запускаем браузер и передаем его в класс
     await puppeteer.launch({
-      headless: true, 
+      headless: false, 
       args: ["--no-sandbox", "--remote-debugging-port=0"]
     }).then(async browser => await new TikTok().build(browser, cookies))
 }

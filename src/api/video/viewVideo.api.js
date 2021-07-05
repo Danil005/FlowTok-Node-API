@@ -8,8 +8,8 @@ class viewVideo
 
     async get(videoID, opts, page)
     {
-        this.page = page
-
+        this.page = await opts.browser.pages()
+        this.page = await this.page[page-1]
         
         logger.debug("Goto To Video ID: " + videoID)
         await this.page.goto("https://m.tiktok.com/v/"+videoID)
@@ -60,8 +60,6 @@ class viewVideo
 
         let commentButton = await this.page.$$('.bar-item-img.engagement-icon-v23')
         commentButton[1].click()
-        logger.info("Comment Button Clicked")
-        logger.debug("Start parse comments")
 
         await this.page.waitForSelector('.video-card-container')
         await this.page.evaluate(() => {
@@ -101,7 +99,6 @@ class viewVideo
                 comments: comments
             }
         }));
-        logger.info("Comments >> Successfully Recived")
 
         /**
          * Получаем информацию об авторе
@@ -146,7 +143,7 @@ class viewVideo
             videoInfo = videoInfo[0]
         }
 
-        logger.info("Video Info >> Successfully Recived")
+        logger.info("API >> video.get >> recived")
         return {
             success: true,
             message: "Video Recived",

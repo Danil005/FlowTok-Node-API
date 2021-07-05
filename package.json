@@ -4,15 +4,19 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "bluebird": "^3.7.2",
     "color-logger": "^0.0.6",
     "env": "^0.0.2",
     "express": "^4.17.1",
     "fs": "^0.0.1-security",
+    "node-cache": "^5.1.2",
     "node-color-log": "^5.3.1",
     "puppeteer": "^10.1.0",
     "puppeteer-extra": "^3.1.18",
     "puppeteer-extra-plugin-stealth": "^2.6.0",
-    "tiktok-captcha-solver": "0.0.4"
+    "redis": "^3.1.2",
+    "tiktok-captcha-solver": "0.0.4",
+    "uuid-apikey": "^1.5.3"
   },
   "devDependencies": {},
   "scripts": {
