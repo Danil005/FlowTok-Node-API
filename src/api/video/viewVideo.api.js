@@ -1,5 +1,4 @@
 const logger = require('node-color-log');
-const CaptchaSolver = require('tiktok-captcha-solver')
 
 class viewVideo 
 {
@@ -7,21 +6,13 @@ class viewVideo
     page = null;
 
 
-    async get(videoID, opts, aid)
+    async get(videoID, opts, page)
     {
-
-        this.page = await opts.browser.newPage()
-        await opts.setConfig(this.page)
-        const captchaSolver = new CaptchaSolver(this.page)
+        this.page = page
 
         
         logger.info("Goto To Video ID: " + videoID)
         await this.page.goto("https://m.tiktok.com/v/"+videoID)
-        await captchaSolver.solve({
-            numAttempts: 3, // max number of attempts to solve the captcha
-            startPosition: 25, // start position of the slider handle
-            positionIncrement: 15, // number of pixels to advance the slider on each iteration
-          })
 
 
         let nameElement = await this.page.$eval('body', el => el.textContent)

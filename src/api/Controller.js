@@ -4,12 +4,14 @@ class Controller
     res = null;
     opts = null;
     error = false;
+    page = null;
 
-    constructor(req, res, opts)
+    constructor(req, res, opts, page)
     {
         this.req = req
         this.res = res
         this.opts = opts
+        this.page = page
 
         this.valid()
     }

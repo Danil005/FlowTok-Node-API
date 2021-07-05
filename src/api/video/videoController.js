@@ -18,7 +18,7 @@ class VideoController extends Controller
                 message: "Param `id` is required",
                 data: []
             })
-        let result = await video.get(id, this.opts)
+        let result = await video.get(id, this.opts, this.page)
         this.res.json(result)
     }
 }

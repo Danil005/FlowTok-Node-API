@@ -1,5 +1,6 @@
 const logger = require('node-color-log');
 const express = require("express");
+const CaptchaSolver = require('tiktok-captcha-solver')
 
 const videoController = require("./api/video/videoController");
 
@@ -10,15 +11,24 @@ class API
     app = null;
     json = null;
     opts = null;
+    page = null;
 
     async build(opts)
     {
         this.app = express()
         this.json = express.json()
         this.opts = opts
+
+        this.page = await opts.browser.newPage()
+        await opts.setConfig(this.page)
+        const captchaSolver = new CaptchaSolver(this.page)
+        await this.page.goto('https://tiktok.com/')
+        logger.error('Start slove captcha')
+        await captchaSolver.solve()
+        logger.debug('Success sloved')
         // Routes
         this.app.get('/video/video.get', (req, res) => this.video(req, res).get())
-
+        
 
         // Listen Server Express On Port
         this.app.listen(this.port, () => { 
@@ -28,7 +38,7 @@ class API
 
     video(req, res)
     {
-        return new videoController(req, res, this.opts)
+        return new videoController(req, res, this.opts, this.page)
     }
 }
 
