@@ -20,7 +20,7 @@ class viewVideo
         await this.page.waitForFunction((sel) => { 
             return document.querySelectorAll(sel).length;
         },{timeout:10000}, '.tt-feed' + ", " + '.error-page'); 
-        let nameElement = await context.page.$eval('body', el => el.text())
+        nameElement = await context.page.$eval('body', el => el.text())
         console.log(nameElement)
         let error = await this.page.evaluate(() => Array.from(document.querySelectorAll('.error-page'), (element) => {
             return [
