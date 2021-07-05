@@ -1,4 +1,5 @@
 const logger = require('node-color-log');
+const CaptchaSolver = require('tiktok-captcha-solver')
 
 class viewVideo 
 {
@@ -8,20 +9,28 @@ class viewVideo
 
     async get(videoID, opts, aid)
     {
-        let timeInMs = Math.floor(Date.now() / 1000)
 
         this.page = await opts.browser.newPage()
         await opts.setConfig(this.page)
+        const captchaSolver = new CaptchaSolver(this.page)
+
         
         logger.info("Goto To Video ID: " + videoID)
         await this.page.goto("https://m.tiktok.com/v/"+videoID)
+        await captchaSolver.solve()
+
+
         let nameElement = await this.page.$eval('body', el => el.textContent)
         console.log(nameElement)
+
+
         await this.page.waitForFunction((sel) => { 
             return document.querySelectorAll(sel).length;
         },{timeout:10000}, '.tt-feed' + ", " + '.error-page'); 
         nameElement = await this.page.$eval('body', el => el.textContent)
         console.log(nameElement)
+
+
         let error = await this.page.evaluate(() => Array.from(document.querySelectorAll('.error-page'), (element) => {
             return [
                 element.querySelector(".title").textContent,
