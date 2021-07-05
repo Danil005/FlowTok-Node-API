@@ -30,7 +30,7 @@ class API
         logger.error('Start slove captcha')
         await captchaSolver.solve()
         logger.debug('Success sloved')
-        this.page.close()
+        await this.page.close()
     
         
 
