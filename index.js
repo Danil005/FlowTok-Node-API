@@ -20,7 +20,7 @@ async function init() {
 
     // Использует плагин для обхода защиты TikTok
     except = ["chrome.runtime", "navigator.languages"]
-    await except.forEach(a => stealthPlugin.enabledEvasions.delete(a));
+    await except.forEach(a => StealthPlugin.enabledEvasions.delete(a));
 
     await puppeteer.use(StealthPlugin)
 
