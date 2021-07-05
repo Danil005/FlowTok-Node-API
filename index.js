@@ -1,5 +1,5 @@
 const puppeteer = require('puppeteer-extra')
-const StealthPlugin = require('puppeteer-extra-plugin-stealth')
+const StealthPlugin = require('puppeteer-extra-plugin-stealth')()
 var fs = require('fs');
 const TikTok = require('./src/tiktok')
 const Cookies = require('./src/utils/cookies.utils')
@@ -22,7 +22,7 @@ async function init() {
     except = ["chrome.runtime", "navigator.languages"]
     await except.forEach(a => stealthPlugin.enabledEvasions.delete(a));
 
-    await puppeteer.use(StealthPlugin())
+    await puppeteer.use(StealthPlugin)
 
     // Запускаем браузер и передаем его в класс
     await puppeteer.launch({
