@@ -34,7 +34,6 @@ class viewVideo
         })) 
 
         if( error.length > 0 ) {
-            this.page.close()
             return {
                 success: false,
                 message: error[0][0],
@@ -148,7 +147,6 @@ class viewVideo
         }
 
         logger.info("Video Info >> Successfully Recived")
-        this.page.close()
         return {
             success: true,
             message: "Video Recived",
