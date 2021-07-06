@@ -15,6 +15,7 @@ class Controller
         this.opts = opts
         this.page = page
 
+        this.headers = req.headers
         this.valid()
     }
 

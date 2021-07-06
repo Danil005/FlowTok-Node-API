@@ -23,14 +23,14 @@ class API
 
         await new routeControl().build(this)
 
-        this.page = await opts.browser.newPage()
-        await opts.setConfig(this.page)
-        const captchaSolver = new CaptchaSolver(this.page)
-        await this.page.goto('https://tiktok.com/')
-        logger.error('Start slove captcha')
-        await captchaSolver.solve()
-        logger.debug('Success sloved')
-        await this.page.close()
+        // this.page = await opts.browser.newPage()
+        // await opts.setConfig(this.page)
+        // const captchaSolver = new CaptchaSolver(this.page)
+        // await this.page.goto('https://tiktok.com/')
+        // logger.error('Start slove captcha')
+        // await captchaSolver.solve()
+        // logger.debug('Success sloved')
+        // await this.page.close()
     
         
 

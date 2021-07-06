@@ -16,6 +16,7 @@ class RouteControl
          * Session Routes
          */
         api.app.post('/session/session.create', (req, res) => api.session(req, res).create())
+        api.app.delete('/session/session.close', (req, res) => api.session(req, res).delete())
 
 
         /**

@@ -1,5 +1,5 @@
 const logger = require('node-color-log');
-
+const fs = require('fs')
 class viewVideo 
 {
     baseAPI = null;
@@ -8,6 +8,7 @@ class viewVideo
 
     async get(videoID, opts, page)
     {
+
         this.page = await opts.browser.pages()
         this.page = await this.page[page-1]
         
@@ -142,6 +143,13 @@ class viewVideo
         if( videoInfo.length > 0 ) {
             videoInfo = videoInfo[0]
         }
+        
+        let data = ""
+        for(let i = 0; i < comments.length; i++) {
+            data += await comments[i].comments.text + "|\n\n"
+        }
+
+        await fs.appendFileSync('./cache/comments.txt', data)
 
         logger.info("API >> video.get >> recived")
         return {
